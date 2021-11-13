@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: doc test for stg_payments.
+    columns: 
+      - name: payment_id
+        description: The primary key payment_id.
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: "{{ doc('payment_status') }}"
+        tests:
+          - accepted_values:
+              values:
+                - success
+                - fail

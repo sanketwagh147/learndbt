@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: Source database payments from stripe   
+    database: raw
+    tables:
+      - name: payment
+        description: raw payment data
+        loaded_at_field: created_at
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 24, period: hour}     
+      
+        columns:
+          - name: payment_id
+            description : Primary key for payments
+            test:
+              -unique
+              -not_null
