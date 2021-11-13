@@ -2,10 +2,17 @@ version: 2
 
 models:
   - name: stg_payments
-    description: Staged customer data from our jaffle shop app.
+    description: doc test for stg_payments.
     columns: 
-      - name: customer_id
-        description: The primary key for customers.
+      - name: payment_id
+        description: The primary key payment_id.
         tests:
           - unique
           - not_null
+      - name: status
+        description: "{{ doc('payment_status') }}"
+        tests:
+          - accepted_values:
+              values:
+                - success
+                - fail
